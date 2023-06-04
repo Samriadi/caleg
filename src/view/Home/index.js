@@ -25,7 +25,7 @@ const Home = () => {
                     <Text style={{color:"red"}}>Bangkala Barat, Jeneponto</Text>
                 </View>
                 <View style={{height:hp(8), width:wp(10)}}>
-                    <Icon name="caret-forward-outline" size={50} color="red"/>
+                    <Icon name="chevron-forward" color="red"/>
                 </View>
 
             </View>

@@ -19,7 +19,7 @@ const Stack = createStackNavigator();
 function MainScreen(){
     return(
         <Tab.Navigator
-        initialRouteName="Home"
+        initialRouteName="DataCalon"
         activeColor="red"
         barStyle={{ backgroundColor: 'white' }}
         shifting={false}
