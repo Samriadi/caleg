@@ -9,7 +9,7 @@ const DataCalon = () => {
  
   return (
     <SafeAreaView>
-        <View style={{height:hp(13), width:wp(100), backgroundColor:'#B22222',borderBottomLeftRadius:20,borderBottomRightRadius:20,alignItems:"center", justifyContent:"center"}}>
+        <View style={style.header}>
             <Text style={{fontSize:25, fontWeight:"bold"}}>Quick Count</Text>
         </View>
         <View style={style.box}>
@@ -52,6 +52,15 @@ const DataCalon = () => {
 };
 
 const style = StyleSheet.create({
+    header:{
+      height:hp(13), 
+      width:wp(100), 
+      backgroundColor:'#B22222',
+      borderBottomLeftRadius:20,
+      borderBottomRightRadius:20,
+      alignItems:"center", 
+      justifyContent:"center"
+    },
     box:{
       width:wp(90),
       height:hp(30), 
