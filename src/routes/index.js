@@ -19,7 +19,7 @@ const Stack = createStackNavigator();
 function MainScreen(){
     return(
         <Tab.Navigator
-        initialRouteName="DataCalon"
+        initialRouteName="Home"
         activeColor="#B22222"
         barStyle={{ backgroundColor: 'white' }}
         shifting={false}
@@ -63,7 +63,7 @@ const NavigationRoutes = () => {
   return (
     <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
-            {/* <Stack.Screen name="MainScreen" component={MainScreen} /> */}
+            <Stack.Screen name="MainScreen" component={MainScreen} />
             <Stack.Screen name="Login" component={Login} />
         </Stack.Navigator>
     </NavigationContainer>
