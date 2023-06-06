@@ -13,16 +13,16 @@ const Login = () => {
 
   return (
     <SafeAreaView>
-        <View style={{height:hp(13), width:wp(100), backgroundColor:'#B22222',borderBottomLeftRadius:20,borderBottomRightRadius:20,alignItems:"center", justifyContent:"center"}}>
-            <Text style={{fontSize:25, fontWeight:"bold"}}>LOGIN</Text>
-        </View>
+        <Image
+        source={require('../../../assets/images/Topbar_login.png')}
+        style={{width: wp(100),}}
+        />
+         <View style={{alignItems:"center",marginTop:hp(5)}}>
+         <Image
+        source={require('../../../assets/images/logo.png')}
+        />
 
-         <View style={{alignItems:"center",marginTop:hp(10)}}>
-          {/* <Image
-                style={{width:wp(40), height:hp(20), alignSelf:"center", marginBottom:10}}
-                source={{uri:'https://engineering.fb.com/wp-content/uploads/2016/04/yearinreview.jpg'}}/> */}
-
-            <View style={{height: hp(35), width:wp(80), justifyContent:"space-around"}}>
+            <View style={{height: hp(35), width:wp(80), justifyContent:"space-around", marginTop:hp(5)}}>
               <View style={{height: hp(18), justifyContent:"space-between"}}>
               <View>
                   <Text style={{color:'#B22222'}}>Username</Text>

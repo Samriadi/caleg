@@ -4,16 +4,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Header from '../../Header';
 
 const DataCalon = () => {
  
   return (
     <SafeAreaView>
-        <View style={style.header}>
-            <Text style={{fontSize:25, fontWeight:"bold"}}>Quick Count</Text>
-        </View>
+       <Header tittle="DATA CALON" />
         <View style={style.box}>
-
           <View style={style.listBox}>
             <View style={style.imageBox}>
             <Image

@@ -1,21 +1,18 @@
-import * as React from 'react';
-import { Appbar } from 'react-native-paper';
+import React, { Component, useEffect } from "react";
+import { Platform } from "react-native";
+import { Appbar } from "react-native-paper";
+import { css } from "../css";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+import { useNavigation } from "@react-navigation/core";
 
-const Header = () => {
-  const _goBack = () => console.log('Went back');
-
-  const _handleSearch = () => console.log('Searching');
-
-  const _handleMore = () => console.log('Shown more');
-
+const Header = ({ tittle }) => {
   return (
-    <Appbar.Header>
-      <Appbar.BackAction onPress={_goBack} />
-      <Appbar.Content title="Title" />
-      <Appbar.Action icon="magnify" onPress={_handleSearch} />
-      <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
+    <Appbar.Header style={css.header}>
+      <Appbar.Content titleStyle={[css.headerTitle]} title={tittle} />
     </Appbar.Header>
   );
 };
-
 export default Header;

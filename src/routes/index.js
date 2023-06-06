@@ -7,6 +7,7 @@ import Login from '../view/Login';
 import Home from '../view/Home';
 import DataCalon from '../view/DataCalon';
 import DataTps from '../view/DataTps';
+import Profile from '../view/Home/Component/Profile';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import {NavigationContainer} from '@react-navigation/native';
@@ -65,6 +66,7 @@ const NavigationRoutes = () => {
         <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen name="MainScreen" component={MainScreen} />
             <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Profile" component={Profile} />
         </Stack.Navigator>
     </NavigationContainer>
   )
