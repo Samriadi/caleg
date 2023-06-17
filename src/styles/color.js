@@ -1,0 +1,17 @@
+export const COLOR = {
+  WHITE: '#FFFFFF',
+  PRIMARY: '#B22222',
+  SECONDARYPRIMARY: '#6bb5ed',
+  THIRD: '#3f9de5',
+  FOURTH: '#FEF9EF',
+  GREY: '#C0C0C0',
+  //   WHITE: '#ffffff',
+  BLACK: '#000000',
+  GREEN: '#33B864',
+  //   AMBER: '#FFB300',
+  BLUE: '#0088FF',
+  RED: '#d21404',
+  LIGHTBLUE: '#4E98BD',
+  YELLOW: '#FFC107',
+  BIRUMUDA: '#CCEDF9',
+};

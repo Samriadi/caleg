@@ -10,7 +10,7 @@ const DataTps = () => {
   return (
     <SafeAreaView>
       <Header tittle="DATA TPS" />
-      <TouchableOpacity style={style.box} onPress={}>
+      <TouchableOpacity style={style.box}>
         <View style={style.listBox}>
           <View style={style.nameBox}>
             <Text style={{color: 'black', fontSize: 20, fontWeight: 'bold'}}>
