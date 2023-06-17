@@ -6,11 +6,13 @@ import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Header from '../../Header';
 
-const DataTps = () => {
+const DataTps = ({navigation}) => {
   return (
     <SafeAreaView>
       <Header tittle="DATA TPS" />
-      <TouchableOpacity style={style.box}>
+      <TouchableOpacity
+        style={style.box}
+        onPress={() => navigation.navigate('DetailTPS')}>
         <View style={style.listBox}>
           <View style={style.nameBox}>
             <Text style={{color: 'black', fontSize: 20, fontWeight: 'bold'}}>
