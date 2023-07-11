@@ -7,9 +7,35 @@ import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {TextInput, Button} from 'react-native-paper';
 
 
-const Login = () => {
-  const [username, setUsername] = React.useState("");
+const Login = ({navigation}) => {
+  const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  const HandleSubmit = async () => {
+    if (email && password) {
+        await fetch("https://caleg-api.fihaa-app.com/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+            }),
+        })
+            .then((res) => res.json())
+            .then(async (res) => {
+                console.log(res.message);
+                if (res.message == "Success") {
+                    navigation.navigate("MainScreen");
+                } else {
+                    alert('Data tidak ditemukan');
+                }
+            }),
+            [];
+    }
+  }
 
   return (
     <SafeAreaView>
@@ -27,7 +53,7 @@ const Login = () => {
               <View>
                   <Text style={{color:'#B22222'}}>Username</Text>
                 <TextInput
-                  onChangeText={(username) => setUsername(username)}
+                  onChangeText={(email) => setEmail(email)}
                   underlineColor="transparent"
                   theme={{colors: {primary: '#B22222'}}}
                   style={style.inputBox}
@@ -44,7 +70,7 @@ const Login = () => {
                   </View>
                   </View>
                   <View>
-                  <Button mode="contained" theme={{colors: {primary: '#B22222'}}} onPress={() => console.log({username})}
+                  <Button mode="contained" theme={{colors: {primary: '#B22222'}}} onPress={HandleSubmit}
                       style={{borderRadius:10}}
                   >
                       LOGIN

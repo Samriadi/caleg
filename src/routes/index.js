@@ -60,8 +60,9 @@ const NavigationRoutes = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="MainScreen" component={MainScreen} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="MainScreen" component={MainScreen} />
+        {/* <Stack.Screen name="Login" component={Login} /> */}
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="DetailTPS" component={DetailTPS} />
       </Stack.Navigator>
