@@ -8,7 +8,11 @@ import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {COLOR} from '../../../../styles/color';
 import {Button} from 'react-native-paper';
 
-export default function Profile({navigation}) {
+export default function Profile({route, navigation}) {
+
+  const {itemName} = route.params;
+  const {itemJenisKelamin} = route.params;
+  const {itemAlamat} = route.params;
   return (
     <View style={{flex: 1}}>
       <View
@@ -27,7 +31,7 @@ export default function Profile({navigation}) {
 
         <Text
           style={{fontSize: wp(4.5), fontWeight: 'bold', marginLeft: wp(5)}}>
-          Anugerah Alief Riadi
+          {itemName}
         </Text>
       </View>
       <View
@@ -67,10 +71,10 @@ export default function Profile({navigation}) {
           }}>
           <Text style={{fontSize: wp(4), color: COLOR.BLACK}}>Nama :</Text>
           <Text style={{fontSize: wp(4), color: COLOR.BLACK}}>
-            Anugerah Alief Riadi
+           {itemName}
           </Text>
         </View>
-        <View
+        {/* <View
           style={{
             width: wp(90),
             height: wp(10),
@@ -85,7 +89,7 @@ export default function Profile({navigation}) {
           <Text style={{fontSize: wp(4), color: COLOR.BLACK}}>
             082250332000
           </Text>
-        </View>
+        </View> */}
         <View
           style={{
             width: wp(90),
@@ -98,7 +102,13 @@ export default function Profile({navigation}) {
           <Text style={{fontSize: wp(4), color: COLOR.BLACK}}>
             Jenis Kelamin :
           </Text>
-          <Text style={{fontSize: wp(4), color: COLOR.BLACK}}>Waria</Text>
+          <>
+            {itemJenisKelamin == "L" ? <Text style={{fontSize: wp(4), color: COLOR.BLACK}}>
+            Laki-laki
+          </Text> : <Text style={{fontSize: wp(4), color: COLOR.BLACK}}>
+            Perempuan
+          </Text> }
+          </>
         </View>
         <View
           style={{
@@ -111,7 +121,7 @@ export default function Profile({navigation}) {
           }}>
           <Text style={{fontSize: wp(4), color: COLOR.BLACK}}>Alamat :</Text>
           <Text style={{fontSize: wp(4), color: COLOR.BLACK}}>
-            BTN Antara Blok A1 No. 2
+            {itemAlamat}
           </Text>
         </View>
       </View>

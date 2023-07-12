@@ -16,24 +16,33 @@ import {
   StackedBarChart,
 } from 'react-native-chart-kit';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from 'axios';
 
-const Home = () => {
- 
+const Home = ({navigation}) => {
+  const [userInfo, setUserInfo] = React.useState({});
 
   const getProfile = async () => {
-
-      let token = await AsyncStorage.getItem("token");
-
-      if(token == null) return null;
-        return fetch('https://caleg-api.fihaa-app.com/user', {
-            method: 'GET',
-            headers: {"Authorization": "Bearer " + token}
-        }).then((response) => {
-          console.log(response);
-            return response.json();
-        }).catch((err) => {
-            console.log(err);
-        })
+      await AsyncStorage.getItem('token', async (err, token) => {
+        if(token){
+          await axios
+          .get(`https://caleg-api.fihaa-app.com/user`,{
+            headers:{
+              Authorization: 'Bearer ' + token,
+              'Content-Type': 'application/json',
+            }
+          })
+          .then(async res => {
+            console.log('USER LOGIN\n', res.data.data);
+            setUserInfo(res.data.data);
+            console.log(userInfo.jenis_kelamin);
+            navigation.navigate("Profile", { 
+              itemName: (userInfo.name),
+              itemJenisKelamin: (userInfo.jenis_kelamin),
+              itemAlamat: (userInfo.kabupaten),
+            });
+          })
+        }
+      })
     } 
   
 
