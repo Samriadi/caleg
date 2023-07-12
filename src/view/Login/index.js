@@ -5,12 +5,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {TextInput, Button} from 'react-native-paper';
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = ({navigation}) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-
   const HandleSubmit = async () => {
     if (email && password) {
         await fetch("https://caleg-api.fihaa-app.com/login", {
@@ -26,8 +25,8 @@ const Login = ({navigation}) => {
         })
             .then((res) => res.json())
             .then(async (res) => {
-                console.log(res.message);
                 if (res.message == "Success") {
+                    await AsyncStorage.setItem("token", res.data.token);
                     navigation.navigate("MainScreen");
                 } else {
                     alert('Data tidak ditemukan');

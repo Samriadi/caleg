@@ -7,7 +7,6 @@ import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {TextInput, Button} from 'react-native-paper';
 import Header from '../../Header';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {useNavigation} from '@react-navigation/core';
 import {
   LineChart,
   BarChart,
@@ -16,9 +15,27 @@ import {
   ContributionGraph,
   StackedBarChart,
 } from 'react-native-chart-kit';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Home = () => {
-  const navigation = useNavigation();
+ 
+
+  const getProfile = async () => {
+
+      let token = await AsyncStorage.getItem("token");
+
+      if(token == null) return null;
+        return fetch('https://caleg-api.fihaa-app.com/user', {
+            method: 'GET',
+            headers: {"Authorization": "Bearer " + token}
+        }).then((response) => {
+          console.log(response);
+            return response.json();
+        }).catch((err) => {
+            console.log(err);
+        })
+    } 
+  
 
   return (
     <SafeAreaView>
@@ -56,7 +73,7 @@ const Home = () => {
             <Text style={{color: '#B22222'}}>Bangkala Barat, Jeneponto</Text>
           </View>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Profile')}
+            onPress={getProfile}
             style={{height: hp(8), width: wp(10), justifyContent: 'center'}}>
             <Icon name="chevron-forward" color="#B22222" size={wp(8)} />
           </TouchableOpacity>
