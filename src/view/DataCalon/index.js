@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Image, Text, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -7,31 +7,13 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Header from '../../Header';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import {COLOR} from '../../styles/color';
 
 const DataCalon = () => {
-  const [partai, setPartai] = React.useState([]);
-  // const [foto, setFoto] = React.useState([]);
-  // const getPartai = async () => {
-  //   await AsyncStorage.getItem('token', async (err, token) => {
-  //     if (token) {
-  //       await axios
-  //         .get(`https://caleg-api.fihaa-app.com/partai`, {
-  //           headers: {
-  //             Authorization: 'Bearer ' + token,
-  //             'Content-Type': 'application/json',
-  //           },
-  //         })
-  //         .then(async res => {
-  //           console.log('Data partai : ', res.data.data);
-  //           foto(res.url_logo);
-  //           console.log('fotoooo : ', foto);
-  //         });
-  //     }
-  //   });
-  // };
+  const [partai, setPartai] = useState([]);
+  const [photoData, setPhotoData] = useState('');
 
   React.useEffect(() => {
-    // getPartai();
     const fetchData = async () => {
       await AsyncStorage.getItem('token', async (err, token) => {
         if (token) {
@@ -46,12 +28,18 @@ const DataCalon = () => {
               console.log('Data partai : ', res.data.data);
               setPartai(res.data.data);
               // console.log('Data partai : ', partai);
+              if (res.data.data.length > 0) {
+                setPhotoData(res.data.data[0].url_logo);
+              }
             });
         }
       });
     };
     fetchData().catch(console.error);
   }, []);
+  useEffect(() => {
+    console.log('photo 1: ', photoData);
+  }, [photoData]);
 
   return (
     <SafeAreaView>
@@ -60,12 +48,16 @@ const DataCalon = () => {
         <View style={style.box} key={key}>
           <View style={style.listBox}>
             <View style={style.imageBox}>
-              <Image
-                style={{width: wp(10), height: hp(5), alignSelf: 'center'}}
-                source={{
-                  uri: `https://caleg-api.fihaa-app.com/${index.url_logo}`,
-                }}
-              />
+              {photoData ? (
+                <Image
+                  style={{width: wp(10), height: hp(5), alignSelf: 'center'}}
+                  source={{
+                    uri: 'data:image/png;base64,' + photoData,
+                  }}
+                />
+              ) : (
+                <Text style={{color: COLOR.RED}}>Image Tidak Ada</Text>
+              )}
             </View>
             <View style={style.nameBox}>
               <Text style={{color: 'black', fontSize: 20, fontWeight: 'bold'}}>
