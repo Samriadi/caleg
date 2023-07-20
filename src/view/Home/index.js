@@ -15,32 +15,31 @@ import {
   ContributionGraph,
   StackedBarChart,
 } from 'react-native-chart-kit';
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 const Home = ({navigation}) => {
   const getProfile = async () => {
-      await AsyncStorage.getItem('token', async (err, token) => {
-        if(token){
-          await axios
-          .get(`https://caleg-api.fihaa-app.com/user`,{
-            headers:{
+    await AsyncStorage.getItem('token', async (err, token) => {
+      if (token) {
+        await axios
+          .get(`https://caleg-api.fihaa-app.com/user`, {
+            headers: {
               Authorization: 'Bearer ' + token,
               'Content-Type': 'application/json',
-            }
+            },
           })
           .then(async res => {
             console.log('Data profile : ', res.data.data);
-            navigation.navigate("Profile", { 
-              itemName: (res.data.data.name),
-              itemJenisKelamin: (res.data.data.jenis_kelamin),
-              itemAlamat: (res.data.data.kabupaten),
+            navigation.navigate('Profile', {
+              itemName: res.data.data.name,
+              itemJenisKelamin: res.data.data.jenis_kelamin,
+              itemAlamat: res.data.data.kabupaten,
             });
-          })
-        }
-      })
-    } 
-  
+          });
+      }
+    });
+  };
 
   return (
     <SafeAreaView>
