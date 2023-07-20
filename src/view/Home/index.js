@@ -19,8 +19,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from 'axios';
 
 const Home = ({navigation}) => {
-  const [userInfo, setUserInfo] = React.useState({});
-
   const getProfile = async () => {
       await AsyncStorage.getItem('token', async (err, token) => {
         if(token){
@@ -32,13 +30,11 @@ const Home = ({navigation}) => {
             }
           })
           .then(async res => {
-            console.log('USER LOGIN\n', res.data.data);
-            setUserInfo(res.data.data);
-            console.log(userInfo.jenis_kelamin);
+            console.log('Data profile : ', res.data.data);
             navigation.navigate("Profile", { 
-              itemName: (userInfo.name),
-              itemJenisKelamin: (userInfo.jenis_kelamin),
-              itemAlamat: (userInfo.kabupaten),
+              itemName: (res.data.data.name),
+              itemJenisKelamin: (res.data.data.jenis_kelamin),
+              itemAlamat: (res.data.data.kabupaten),
             });
           })
         }

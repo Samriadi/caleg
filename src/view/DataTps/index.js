@@ -5,18 +5,45 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Header from '../../Header';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from 'axios';
 
 const DataTps = ({navigation}) => {
+const[Tps, setTps]= React.useState([]);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      await AsyncStorage.getItem('token', async (err, token) => {
+        if(token){
+          await axios
+          .get(`https://caleg-api.fihaa-app.com/tps`,{
+            headers:{
+              Authorization: 'Bearer ' + token,
+              'Content-Type': 'application/json',
+            }
+          })
+          .then(async res => {
+            console.log('Data Tps : ', res.data.data);
+            setTps(res.data.data);
+          })
+        }
+      })
+    }
+    fetchData()
+      .catch(console.error);
+  }, [])
+
   return (
     <SafeAreaView>
       <Header tittle="DATA TPS" />
+      {Tps.map((index, key) => (
       <TouchableOpacity
         style={style.box}
         onPress={() => navigation.navigate('DetailTPS')}>
         <View style={style.listBox}>
           <View style={style.nameBox}>
             <Text style={{color: 'black', fontSize: 20, fontWeight: 'bold'}}>
-              TPS 001
+              {index.no_tps}
             </Text>
           </View>
           <View style={style.iconBox}>
@@ -24,6 +51,7 @@ const DataTps = ({navigation}) => {
           </View>
         </View>
       </TouchableOpacity>
+       ))}
     </SafeAreaView>
   );
 };
